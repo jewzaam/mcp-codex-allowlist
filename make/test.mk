@@ -18,5 +18,5 @@ test-typecheck: install-dev  ## Type check with mypy
 test-complexity: install-dev  ## Check cyclomatic complexity
 	$(PYTHON) -m xenon $(PACKAGE_NAME) --max-absolute B --max-modules B --max-average A
 
-test-reachability:  ## Check document reachability
+test-reachability: $(PYTHON)  ## Check document reachability
 	$(PYTHON) scripts/reachability.py --check
