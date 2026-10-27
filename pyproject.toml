@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-codex-allowlist"
+version = "0.1.0"
+description = "MCP server exposing Codex command execution rules"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = ["mcp>=2.3.0,<3.0.0"]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.0",
+    "flake8>=6.0",
+    "mypy>=1.11",
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0",
+    "pytest-mock>=3.0",
+    "xenon>=0.9",
+]
+
+[project.scripts]
+mcp-codex-allowlist = "mcp_codex_allowlist.mcp_server:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mcp_codex_allowlist*"]
+
+[tool.coverage.run]
+source = ["mcp_codex_allowlist"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov=mcp_codex_allowlist --cov-report=term"
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
